@@ -91,6 +91,8 @@ This repository is configured with GitHub Actions CI/CD:
 - **Builds Docker image** and pushes to AWS ECR
 - **Updates ECS service** automatically
 
+> 💡 **CI/CD Verification**: Run `./verify-cicd.sh` to check CI/CD setup status
+
 ### GitHub Secrets Required
 
 - `AWS_ACCESS_KEY_ID`
