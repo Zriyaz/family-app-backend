@@ -4,7 +4,7 @@
  */
 export const sanitizeInput = (str: unknown): string => {
   if (typeof str !== 'string') return String(str);
-  
+
   return str
     .replace(/[<>]/g, '') // Remove < and >
     .trim()
@@ -31,4 +31,3 @@ export const sanitizeObject = (obj: unknown): unknown => {
   }
   return sanitized;
 };
-

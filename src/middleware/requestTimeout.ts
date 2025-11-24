@@ -16,4 +16,3 @@ export const requestTimeout = (timeout: number = 30000) => {
     next();
   };
 };
-

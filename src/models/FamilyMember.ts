@@ -38,4 +38,3 @@ const familyMemberSchema = new Schema<IFamilyMember>({
 const FamilyMember = mongoose.model<IFamilyMember>('FamilyMember', familyMemberSchema);
 
 export default FamilyMember;
-

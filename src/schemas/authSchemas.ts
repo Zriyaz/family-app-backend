@@ -8,10 +8,7 @@ export const registerSchema = z.object({
       .trim()
       .min(2, 'Name must be at least 2 characters')
       .max(50, 'Name must be less than 50 characters')
-      .regex(
-        /^[a-zA-Z\s'-]+$/,
-        'Name can only contain letters, spaces, hyphens, and apostrophes'
-      ),
+      .regex(/^[a-zA-Z\s'-]+$/, 'Name can only contain letters, spaces, hyphens, and apostrophes'),
     email: z
       .string()
       .trim()
@@ -31,11 +28,7 @@ export const registerSchema = z.object({
 // Login schema
 export const loginSchema = z.object({
   body: z.object({
-    email: z
-      .string()
-      .trim()
-      .toLowerCase()
-      .email('Please provide a valid email'),
+    email: z.string().trim().toLowerCase().email('Please provide a valid email'),
     password: z.string().min(1, 'Password is required'),
   }),
 });
@@ -43,4 +36,3 @@ export const loginSchema = z.object({
 // Export types for TypeScript
 export type RegisterInput = z.infer<typeof registerSchema>['body'];
 export type LoginInput = z.infer<typeof loginSchema>['body'];
-

@@ -35,9 +35,10 @@ const logger = winston.createLogger({
   transports: [
     // Write all logs to console
     new winston.transports.Console({
-      format: process.env.NODE_ENV === 'production' 
-        ? winston.format.combine(winston.format.json())
-        : consoleFormat,
+      format:
+        process.env.NODE_ENV === 'production'
+          ? winston.format.combine(winston.format.json())
+          : consoleFormat,
     }),
     // Write all logs with level 'error' and below to error.log
     new winston.transports.File({
@@ -62,4 +63,3 @@ if (!fs.existsSync(logsDir)) {
 }
 
 export default logger;
-

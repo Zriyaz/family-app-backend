@@ -10,13 +10,9 @@ export const createFamilyMemberSchema = z.object({
       .trim()
       .min(2, 'Name must be at least 2 characters')
       .max(50, 'Name must be less than 50 characters')
-      .regex(
-        /^[a-zA-Z\s'-]+$/,
-        'Name can only contain letters, spaces, hyphens, and apostrophes'
-      ),
+      .regex(/^[a-zA-Z\s'-]+$/, 'Name can only contain letters, spaces, hyphens, and apostrophes'),
     relationship: relationshipEnum,
-    age: z
-      .coerce
+    age: z.coerce
       .number()
       .int('Age must be an integer')
       .min(0, 'Age must be a positive number')
@@ -36,14 +32,10 @@ export const updateFamilyMemberSchema = z.object({
       .trim()
       .min(2, 'Name must be at least 2 characters')
       .max(50, 'Name must be less than 50 characters')
-      .regex(
-        /^[a-zA-Z\s'-]+$/,
-        'Name can only contain letters, spaces, hyphens, and apostrophes'
-      )
+      .regex(/^[a-zA-Z\s'-]+$/, 'Name can only contain letters, spaces, hyphens, and apostrophes')
       .optional(),
     relationship: relationshipEnum.optional(),
-    age: z
-      .coerce
+    age: z.coerce
       .number()
       .int('Age must be an integer')
       .min(0, 'Age must be a positive number')
@@ -62,4 +54,3 @@ export const deleteFamilyMemberSchema = z.object({
 // Export types
 export type CreateFamilyMemberInput = z.infer<typeof createFamilyMemberSchema>['body'];
 export type UpdateFamilyMemberInput = z.infer<typeof updateFamilyMemberSchema>['body'];
-

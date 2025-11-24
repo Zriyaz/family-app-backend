@@ -70,6 +70,29 @@ npm start
 
 The API will be available at `http://localhost:5000`
 
+### Code Quality
+
+This project uses ESLint, Prettier, and Husky for code quality:
+
+```bash
+# Lint code
+npm run lint
+
+# Fix linting issues automatically
+npm run lint:fix
+
+# Format code with Prettier
+npm run format
+
+# Check formatting without fixing
+npm run format:check
+
+# Type check
+npm run type-check
+```
+
+**Pre-commit hooks**: Husky automatically runs linting and formatting on staged files before each commit. This ensures code quality before pushing to the repository.
+
 ## 🐳 Docker
 
 ```bash

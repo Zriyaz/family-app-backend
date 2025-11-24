@@ -37,7 +37,7 @@ router.post(
 
       if (user) {
         const token = generateToken(user._id.toString());
-        
+
         // Set httpOnly cookie
         // Note: secure should be true only if using HTTPS
         // For HTTP ALB, set secure to false (or use HTTPS with SSL certificate)
@@ -83,7 +83,7 @@ router.post(
 
       if (user && (await user.matchPassword(password))) {
         const token = generateToken(user._id.toString());
-        
+
         // Set httpOnly cookie
         // Note: secure should be true only if using HTTPS
         // For HTTP ALB, set secure to false (or use HTTPS with SSL certificate)
@@ -152,7 +152,7 @@ router.post('/logout', protect, async (_req: Request, res: Response): Promise<Re
       sameSite: 'lax', // Works with both HTTP and HTTPS
       path: '/',
     });
-    
+
     res.json({ message: 'Logged out successfully' });
   } catch (error) {
     const errorMessage = error instanceof Error ? error.message : 'Unknown error';
@@ -163,4 +163,3 @@ router.post('/logout', protect, async (_req: Request, res: Response): Promise<Re
 });
 
 export default router;
-

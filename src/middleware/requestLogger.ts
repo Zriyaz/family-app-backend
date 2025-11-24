@@ -15,10 +15,9 @@ const skip = (): boolean => {
 };
 
 // Build the morgan middleware
-const requestLogger = morgan(
-  ':method :url :status :res[content-length] - :response-time ms',
-  { stream, skip }
-);
+const requestLogger = morgan(':method :url :status :res[content-length] - :response-time ms', {
+  stream,
+  skip,
+});
 
 export default requestLogger;
-

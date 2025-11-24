@@ -8,7 +8,7 @@ export const errorHandler = (
   _next: NextFunction
 ): void => {
   const statusCode = res.statusCode === 200 ? 500 : res.statusCode;
-  
+
   // Log error details (but don't expose to client)
   logger.error({
     message: err.message,
@@ -21,7 +21,7 @@ export const errorHandler = (
 
   // Don't leak sensitive error information in production
   const isDevelopment = process.env.NODE_ENV === 'development';
-  
+
   res.status(statusCode);
   res.json({
     message: isDevelopment ? err.message : 'An error occurred',
@@ -29,4 +29,3 @@ export const errorHandler = (
     ...(isDevelopment && { details: err }),
   });
 };
-

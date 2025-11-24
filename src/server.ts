@@ -37,17 +37,19 @@ app.set('trust proxy', 1);
 connectDB();
 
 // Security middleware
-app.use(helmet({
-  contentSecurityPolicy: {
-    directives: {
-      defaultSrc: ["'self'"],
-      styleSrc: ["'self'", "'unsafe-inline'"],
-      scriptSrc: ["'self'"],
-      imgSrc: ["'self'", "data:", "https:"],
+app.use(
+  helmet({
+    contentSecurityPolicy: {
+      directives: {
+        defaultSrc: ["'self'"],
+        styleSrc: ["'self'", "'unsafe-inline'"],
+        scriptSrc: ["'self'"],
+        imgSrc: ["'self'", 'data:', 'https:'],
+      },
     },
-  },
-  crossOriginEmbedderPolicy: false,
-}));
+    crossOriginEmbedderPolicy: false,
+  })
+);
 
 const allowedOrigins = [
   process.env.FRONTEND_URL,
@@ -58,28 +60,34 @@ const allowedOrigins = [
   'http://127.0.0.1:5173',
 ].filter(Boolean) as string[];
 
-app.use(cors({
-  origin: function (origin, callback) {
-    // In production, be strict about origins
-    if (process.env.NODE_ENV === 'production') {
-      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-        callback(null, true);
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      // In production, be strict about origins
+      if (process.env.NODE_ENV === 'production') {
+        if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+          callback(null, true);
+        } else {
+          logger.warn(`CORS blocked origin: ${origin}`);
+          callback(new Error('Not allowed by CORS'));
+        }
       } else {
-        logger.warn(`CORS blocked origin: ${origin}`);
-        callback(new Error('Not allowed by CORS'));
+        // In development, allow localhost origins
+        if (
+          !origin ||
+          origin.startsWith('http://localhost') ||
+          allowedOrigins.indexOf(origin) !== -1
+        ) {
+          callback(null, true);
+        } else {
+          callback(new Error('Not allowed by CORS'));
+        }
       }
-    } else {
-      // In development, allow localhost origins
-      if (!origin || origin.startsWith('http://localhost') || allowedOrigins.indexOf(origin) !== -1) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    }
-  },
-  credentials: true,
-  optionsSuccessStatus: 200,
-}));
+    },
+    credentials: true,
+    optionsSuccessStatus: 200,
+  })
+);
 
 // Trust proxy for accurate IP detection (important for Docker/nginx proxy)
 app.set('trust proxy', 1);
@@ -133,4 +141,3 @@ app.listen(PORT, () => {
   logger.info(`Server running on port ${PORT}`);
   logger.info(`Environment: ${process.env.NODE_ENV || 'development'}`);
 });
-

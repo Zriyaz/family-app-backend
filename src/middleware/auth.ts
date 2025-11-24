@@ -19,10 +19,7 @@ export const protect = async (
     token = req.cookies.token;
   }
   // Fallback to Authorization header (for backward compatibility)
-  else if (
-    req.headers.authorization &&
-    req.headers.authorization.startsWith('Bearer')
-  ) {
+  else if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
     token = req.headers.authorization.split(' ')[1];
   }
 
