@@ -12,7 +12,7 @@ on:
 env:
   AWS_REGION: us-east-1
   ECR_BACKEND_REPOSITORY: family-app-backend
-  ECS_CLUSTER: family-app-cluster
+  ECS_CLUSTER: family-app-cluster1
   ECS_BACKEND_SERVICE: backend-service
 
 jobs:

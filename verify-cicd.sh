@@ -75,10 +75,10 @@ if command -v aws &> /dev/null; then
     
     # Check ECS service
     if aws ecs describe-services \
-        --cluster family-app-cluster \
+        --cluster family-app-cluster1 \
         --services backend-service \
         --region us-east-1 &> /dev/null; then
-        echo "   ✅ ECS Service 'backend-service' exists in cluster 'family-app-cluster'"
+        echo "   ✅ ECS Service 'backend-service' exists in cluster 'family-app-cluster1'"
     else
         echo "   ⚠️  ECS Service not found or AWS credentials not configured"
     fi

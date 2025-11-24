@@ -101,7 +101,7 @@ This repository is configured with GitHub Actions CI/CD:
 ### AWS Resources
 
 - **ECR Repository**: `family-app-backend`
-- **ECS Cluster**: `family-app-cluster`
+- **ECS Cluster**: `family-app-cluster1`
 - **ECS Service**: `backend-service`
 - **Secrets Manager**: `family-app/mongodb-uri`, `family-app/jwt-secret`
 
